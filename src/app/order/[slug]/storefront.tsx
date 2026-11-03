@@ -18,6 +18,14 @@ type PublicMenu = {
 type OrderType = "pickup" | "delivery";
 
 const heroFallback = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85";
+const oliveUakMenuPhotos: Record<string, string> = {
+  "Chicken Zinger Burger": "/menu/olive-uak/chicken-zinger-burger.webp",
+  "Classic Smash Burger": "/menu/olive-uak/classic-smash-burger.webp",
+  "Double Cheese Burger": "/menu/olive-uak/double-cheese-burger.webp",
+  "Chicken Nuggets (6 pcs)": "/menu/olive-uak/chicken-nuggets.webp",
+  "Masala Fries": "/menu/olive-uak/masala-fries.webp",
+  "Mint Margarita": "/menu/olive-uak/mint-margarita.webp",
+};
 
 function money(value: number, currency: string) {
   try { return new Intl.NumberFormat("en-PK", { style: "currency", currency }).format(value); }
@@ -130,7 +138,10 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
   const total = currentSubtotal + taxAmount + deliveryFee;
   const minimumOrder = Number(menu?.settings.minimum_order ?? 0);
   const orderTypeAvailable = customer.orderType === "pickup" ? menu?.settings.accepts_pickup : menu?.settings.accepts_delivery;
-  const heroImage = menu?.categories.flatMap((category) => category.items).find((item) => item.image_url)?.image_url ?? heroFallback;
+  const imageForItem = (item: MenuItem) => restaurantSlug === "olive-uak"
+    ? oliveUakMenuPhotos[item.name] ?? item.image_url
+    : item.image_url;
+  const heroImage = menu?.categories.flatMap((category) => category.items).map(imageForItem).find(Boolean) ?? heroFallback;
 
   function add(item: MenuItem) {
     setCart((old) => {
@@ -264,7 +275,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
               <div className={styles.menuGrid}>
                 {visibleCategories.flatMap((category) => category.items.map((item) => (
                   <article className={styles.menuCard} key={item.id}>
-                    <div className={styles.menuPhoto}><FoodImage src={item.image_url} alt={item.name} /><span className={styles.photoCategory}>{category.name}</span></div>
+                    <div className={styles.menuPhoto}><FoodImage src={imageForItem(item)} alt={item.name} /><span className={styles.photoCategory}>{category.name}</span></div>
                     <div className={styles.menuCardInfo}>
                       <div className={styles.itemTitle}><h3>{item.name}</h3><strong>{money(Number(item.price), menu.restaurant.currency)}</strong></div>
                       <p>{item.description || "Thoughtfully prepared and ready to enjoy."}</p>
