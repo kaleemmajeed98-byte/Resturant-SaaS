@@ -2348,3 +2348,202 @@
     background: linear-gradient(180deg, #1b1a17f5, #0e0e0df7);
   }
 }
+
+.categoryTabs button,
+.categoryTabs button:not(.activeCategory) {
+  min-height: 42px;
+  border: 1px solid #574a32;
+  border-radius: 4px;
+  padding: 0 17px;
+  background: #141310;
+  box-shadow: none;
+  color: #d7d0c2;
+  font-size: 10px;
+  letter-spacing: .015em;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.categoryTabs button:hover,
+.categoryTabs button:not(.activeCategory):hover {
+  border-color: #c6a15b;
+  background: #1d1a14;
+  color: #e4c67e;
+}
+
+.categoryTabs button.activeCategory {
+  border-color: #c6a15b;
+  background: #c6a15b;
+  box-shadow: none;
+  color: #15120c;
+}
+
+.primaryButton,
+.cardFooter button,
+.checkoutButton,
+.mobileBar button {
+  border: 1px solid #c6a15b;
+  border-radius: 4px;
+  background: #c6a15b;
+  box-shadow: none;
+  color: #15120c;
+  font-weight: 700;
+  text-shadow: none;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.cardFooter button {
+  min-height: 38px;
+  padding: 0 14px;
+  font-size: 9px;
+  letter-spacing: .04em;
+}
+
+.primaryButton:hover,
+.cardFooter button:hover,
+.checkoutButton:hover,
+.mobileBar button:hover {
+  transform: none;
+  border-color: #e1c47f;
+  background: #e1c47f;
+  box-shadow: none;
+  color: #15120c;
+}
+
+.primaryButton:active,
+.cardFooter button:active,
+.checkoutButton:active,
+.mobileBar button:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.checkoutButton:disabled {
+  border-color: #514a3c;
+  background: #302d27;
+  color: #898273;
+  opacity: 1;
+}
+
+.secondaryButton {
+  border: 1px solid #78633d;
+  border-radius: 4px;
+  background: #151411;
+  box-shadow: none;
+  color: #eee8dc;
+  text-shadow: none;
+}
+
+.secondaryButton:hover,
+.secondaryButton:active {
+  border-color: #c6a15b;
+  background: #201b12;
+  box-shadow: none;
+  color: #e4c67e;
+}
+
+.cartButton,
+.mobileMenuButton,
+.closeButton {
+  border-color: #574a32;
+  border-radius: 4px;
+  background: #151411;
+  box-shadow: none;
+  color: #e8e1d3;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.cartButton:hover,
+.mobileMenuButton:hover,
+.closeButton:hover {
+  border-color: #c6a15b;
+  background: #201b12;
+  box-shadow: none;
+  color: #e4c67e;
+}
+
+.cartButton b {
+  border: 1px solid #c6a15b;
+  background: #c6a15b;
+  box-shadow: none;
+  color: #15120c;
+}
+
+.quantityControl {
+  border-color: #574a32;
+  border-radius: 4px;
+  background: #151411;
+  box-shadow: none;
+}
+
+.quantityControl button {
+  border-radius: 3px;
+  color: #e4c67e;
+}
+
+.quantityControl button:hover {
+  background: #292217;
+}
+
+.removeButton,
+.noResults button,
+.successBanner button {
+  color: #c9a96b;
+}
+
+.removeButton:hover,
+.noResults button:hover,
+.successBanner button:hover {
+  color: #ead291;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.categoryTabs button:focus-visible,
+.cardFooter button:focus-visible,
+.checkoutButton:focus-visible,
+.mobileBar button:focus-visible,
+.cartButton:focus-visible,
+.mobileMenuButton:focus-visible,
+.closeButton:focus-visible,
+.quantityControl button:focus-visible,
+.removeButton:focus-visible,
+.noResults button:focus-visible,
+.successBanner button:focus-visible {
+  outline: 2px solid #ead291;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .categoryTabs {
+    gap: 8px;
+  }
+
+  .categoryTabs button,
+  .categoryTabs button:not(.activeCategory) {
+    min-height: 42px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .cardFooter button {
+    min-height: 36px;
+    padding-right: 11px;
+    padding-left: 11px;
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryTabs button,
+  .categoryTabs button:not(.activeCategory),
+  .primaryButton,
+  .cardFooter button,
+  .checkoutButton,
+  .mobileBar button,
+  .secondaryButton,
+  .cartButton,
+  .mobileMenuButton,
+  .closeButton {
+    transition-duration: .01ms;
+  }
+}
