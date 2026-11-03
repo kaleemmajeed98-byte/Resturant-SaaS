@@ -66,6 +66,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
   const [search, setSearch] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cart, setCart] = useState<CartLine[]>([]);
+  const [cartOpen, setCartOpen] = useState(false);
   const [checkout, setCheckout] = useState(false);
   const [sending, setSending] = useState(false);
   const [orderDone, setOrderDone] = useState("");
@@ -105,13 +106,21 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
   }, [restaurantSlug, branchSlug]);
 
   useEffect(() => {
-    if (!checkout) return;
+    if (!checkout && !cartOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape" && !sending) setCheckout(false);
+      if (event.key === "Escape" && !sending) {
+        if (checkout) setCheckout(false);
+        else setCartOpen(false);
+      }
     }
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [checkout, sending]);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [cartOpen, checkout, sending]);
 
   useEffect(() => {
     if (!toast) return;
@@ -150,6 +159,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
         ? old.map((line) => line.id === item.id ? { ...line, quantity: Math.min(50, line.quantity + 1) } : line)
         : [...old, { id: item.id, name: item.name, price: Number(item.price), quantity: 1 }];
     });
+    setCartOpen(true);
     setToast(`${item.name} added to your order`);
   }
 
@@ -236,7 +246,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
         <button type="button" className={styles.mobileMenuButton} aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileMenuOpen} aria-controls="restaurant-navigation" onClick={() => setMobileMenuOpen((open) => !open)}><Icon name={mobileMenuOpen ? "close" : "menu"} /></button>
         <div className={styles.headerRight}>
           <span className={styles.branchName}><Icon name="pin" />{menu.branch.name}</span>
-          <button type="button" className={styles.cartButton} onClick={() => { setCheckout(true); setProblem(""); }} aria-label={`Open cart, ${count} items`}><Icon name="bag" /><span>Your order</span><b>{count}</b></button>
+          <button type="button" className={styles.cartButton} onClick={() => setCartOpen(true)} aria-label={`Open cart, ${count} items`}><Icon name="bag" /><span>Your order</span><b>{count}</b></button>
         </div>
       </header>
 
@@ -245,7 +255,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
           <p className={styles.eyebrow}><span /> Fresh from the kitchen</p>
           <h1>{menu.restaurant.name}</h1>
           <p className={styles.heroDescription}>{menu.branch.address || "Good food, thoughtfully prepared. Choose your favourites and order directly from us."}</p>
-          <div className={styles.heroActions}><a href="#menu" className={styles.primaryButton}>Explore the menu <Icon name="arrow" /></a><button type="button" className={styles.secondaryButton} onClick={() => { setCheckout(true); setProblem(""); }}>Order now</button></div>
+          <div className={styles.heroActions}><a href="#menu" className={styles.primaryButton}>Explore the menu <Icon name="arrow" /></a><button type="button" className={styles.secondaryButton} onClick={() => count ? setCartOpen(true) : document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}>Order now</button></div>
           <div className={styles.heroMeta}><span>Freshly prepared</span><i /><span>{menu.settings.accepts_delivery ? "Pickup & delivery" : "Pickup available"}</span><i /><span>Pay at the restaurant</span></div>
         </div>
         <div className={styles.heroImage}>
@@ -265,7 +275,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
           <div><p className={styles.sectionEyebrow}>Made for your table</p><h2>Our menu</h2><p className={styles.menuIntro}>A few good things, made with care.</p></div>
           <label className={styles.searchBox}><span className={styles.srOnly}>Search menu</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m16 16 4 4" /></svg><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search the menu" /></label>
         </div>
-        <div className={`${styles.menuLayout} ${count === 0 ? styles.menuLayoutWithoutCart : ""}`}>
+        <div className={styles.menuLayout}>
           <div className={styles.menuContent}>
             <div className={styles.categoryTabs} role="group" aria-label="Filter menu by category">
               <button type="button" aria-pressed={activeCategory === "all"} className={activeCategory === "all" ? styles.activeCategory : ""} onClick={() => setActiveCategory("all")}>All items</button>
@@ -287,20 +297,33 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
             ) : <div className={styles.noResults}><Icon name="plate" /><h3>{search ? "Nothing found" : "The menu is being prepared"}</h3><p>{search ? "Try another search or category." : "Check back soon for something delicious."}</p>{search && <button type="button" onClick={() => { setSearch(""); setActiveCategory("all"); }}>Clear filters</button>}</div>}
           </div>
 
-          {count > 0 && <aside className={styles.desktopCart} aria-label="Order summary">
-            <div className={styles.cartHeading}><div><p>Your selections</p><h2>Your order</h2></div><span>{count} {count === 1 ? "item" : "items"}</span></div>
-            <div className={styles.cartContent}>{cartContents}</div>
-            {currentSubtotal > 0 && currentSubtotal < minimumOrder && <p className={styles.minimumNote}>Minimum order is {money(minimumOrder, menu.restaurant.currency)}.</p>}
-            <button type="button" className={styles.checkoutButton} disabled={!cart.length || !orderTypeAvailable || currentSubtotal < minimumOrder} onClick={() => { setCheckout(true); setProblem(""); }}>Continue to checkout <Icon name="arrow" /></button>
-            <p className={styles.paymentNote}>No online payment required · Pay at the restaurant</p>
-          </aside>}
         </div>
       </section>
 
       <section id="story" className={styles.story}><div><p className={styles.sectionEyebrow}>At the table</p><h2>Good things are better shared.</h2></div><p>Discover the menu, choose your favourites, and let our team take care of the rest. We look forward to welcoming you.</p></section>
       <footer id="contact" className={styles.footer}><div><a className={styles.brand} href="/">tablecraft<span>.</span></a><p>{menu.restaurant.name}</p>{menu.branch.address && <p className={styles.footerAddress}><Icon name="pin" />{menu.branch.address}</p>}</div><div className={styles.footerRight}>{menu.restaurant.name && <span>Freshly prepared, just for you.</span>}<a href="#home">Back to top ↑</a></div></footer>
 
-      {count > 0 && !checkout && <div className={styles.mobileBar}><button type="button" onClick={() => { setCheckout(true); setProblem(""); }}><span><Icon name="bag" />View order · {count}</span><span>{money(total, menu.restaurant.currency)} <Icon name="arrow" /></span></button></div>}
+      {count > 0 && !checkout && !cartOpen && <div className={styles.mobileBar}><button type="button" onClick={() => setCartOpen(true)}><span><Icon name="bag" />View order · {count}</span><span>{money(total, menu.restaurant.currency)} <Icon name="arrow" /></span></button></div>}
+
+      {cartOpen && (
+        <div className={styles.drawerLayer}>
+          <button type="button" aria-label="Close cart" className={`${styles.backdrop} ${styles.cartBackdrop}`} onClick={() => setCartOpen(false)} />
+          <section className={`${styles.drawer} ${styles.cartDrawer}`} role="dialog" aria-modal="true" aria-labelledby="cart-title">
+            <div className={styles.drawerHeader}>
+              <div><p>Your selections</p><h2 id="cart-title">Your order</h2></div>
+              <button type="button" className={styles.closeButton} onClick={() => setCartOpen(false)} aria-label="Close cart"><Icon name="close" /></button>
+            </div>
+            <div className={styles.drawerScroll}>
+              <div className={styles.cartContent}>{cartContents}</div>
+              {currentSubtotal > 0 && currentSubtotal < minimumOrder && <p className={styles.minimumNote}>Add {money(minimumOrder - currentSubtotal, menu.restaurant.currency)} more to meet this order&apos;s minimum.</p>}
+            </div>
+            <div className={styles.drawerFooter}>
+              <button type="button" className={styles.checkoutButton} disabled={!cart.length || !orderTypeAvailable || currentSubtotal < minimumOrder} onClick={() => { setCartOpen(false); setCheckout(true); setProblem(""); }}>Continue to checkout <Icon name="arrow" /></button>
+              <p className={styles.paymentNote}>No online payment required · Pay at the restaurant</p>
+            </div>
+          </section>
+        </div>
+      )}
 
       {checkout && (
         <div className={styles.drawerLayer}>
