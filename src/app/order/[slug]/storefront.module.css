@@ -579,3 +579,323 @@
   }
   .story { padding: 20px; }
 }
+
+.page {
+  background-color: #e9dfcf;
+  background-image:
+    radial-gradient(ellipse at 18% 0%, #fff8e8 0, transparent 37%),
+    radial-gradient(ellipse at 100% 36%, #d7c6ab65 0, transparent 42%),
+    repeating-linear-gradient(3deg, #6e563006 0, #6e563006 1px, transparent 1px, transparent 5px);
+}
+
+.header {
+  border: 1px solid #fff9eb;
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(180deg, #fff9ed 0%, #e8dcc8 100%);
+  box-shadow:
+    0 5px 0 #cbb99d,
+    0 9px 18px #503c251e,
+    inset 0 1px 0 #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.brand {
+  text-shadow: 0 1px 0 #fff8e9;
+}
+
+.cartButton,
+.mobileMenuButton,
+.searchBox,
+.categoryTabs button:not(.activeCategory) {
+  border: 1px solid #cbbb9d;
+  background: linear-gradient(180deg, #fffdf6 0%, #e6dac6 100%);
+  box-shadow:
+    0 3px 0 #c2af90,
+    0 5px 10px #604b2c16,
+    inset 0 1px 0 #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.cartButton:active,
+.mobileMenuButton:active,
+.categoryTabs button:not(.activeCategory):active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #c2af90, inset 0 2px 4px #604b2c22;
+}
+
+.cartButton b {
+  border: 1px solid #fff2d4;
+  background: linear-gradient(180deg, #34312b, #111);
+  box-shadow: 0 2px 3px #0004, inset 0 1px #ffffff38;
+}
+
+.heroImage {
+  border: 5px solid #f6eddd;
+  box-shadow:
+    0 0 0 1px #c5b28f,
+    0 8px 0 #c5b28f,
+    0 17px 30px #4d39231f,
+    inset 0 1px #fff;
+}
+
+.heroCard {
+  border: 1px solid #fff8e8;
+  background: linear-gradient(180deg, #fffaf0 0%, #e7dcc9 100%);
+  box-shadow:
+    0 5px 0 #b9a585,
+    0 9px 20px #0004,
+    inset 0 1px 0 #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.heroCardMark {
+  border: 1px solid #d6c6a9;
+  background: linear-gradient(145deg, #fff9e9, #ded0b8);
+  box-shadow: inset 0 1px #fff, 0 2px 3px #6b55321c;
+}
+
+.primaryButton,
+.secondaryButton,
+.cardFooter button,
+.checkoutButton {
+  border: 1px solid #fff6df;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #3e3b34 0%, #171715 54%, #090909 100%);
+  box-shadow:
+    0 4px 0 #050505,
+    0 7px 12px #12121221,
+    inset 0 1px 0 #ffffff35;
+  text-shadow: 0 1px 1px #0008;
+}
+
+.primaryButton:hover,
+.cardFooter button:hover,
+.checkoutButton:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #5a4a2d 0%, #332818 100%);
+  box-shadow: 0 5px 0 #20180d, 0 9px 15px #12121224, inset 0 1px #ffffff42;
+  color: #fffaf0;
+}
+
+.primaryButton:active,
+.cardFooter button:active,
+.checkoutButton:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #050505, inset 0 2px 5px #0008;
+}
+
+.secondaryButton {
+  border: 1px solid #c6b596;
+  background: linear-gradient(180deg, #fffdf6 0%, #e5d9c4 100%);
+  box-shadow: 0 4px 0 #c2af90, 0 6px 12px #604b2c16, inset 0 1px #fff;
+  text-shadow: 0 1px #fff;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-1px);
+  border-color: #b69b6b;
+  background: linear-gradient(180deg, #fffdf6, #ebdfc9);
+  box-shadow: 0 5px 0 #bba783, 0 8px 14px #604b2c1c, inset 0 1px #fff;
+}
+
+.secondaryButton:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #bba783, inset 0 2px 4px #604b2c26;
+}
+
+.menuSection {
+  border-top: 0;
+}
+
+.searchBox {
+  border-color: #c9b99b;
+  background: linear-gradient(180deg, #d9cbb4, #f8f2e6);
+  box-shadow: inset 0 2px 5px #58432625, 0 1px 0 #fff8e9;
+}
+
+.searchBox input {
+  color: #30291f;
+}
+
+.categoryTabs button.activeCategory {
+  border: 1px solid #fff1d2;
+  background: linear-gradient(180deg, #4a463d, #171715);
+  box-shadow: inset 0 1px #ffffff3b, 0 2px 0 #080807, 0 4px 8px #3c2c1b20;
+}
+
+.menuCard {
+  border: 1px solid #c9b997;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fff9ed 0%, #eee2ce 100%);
+  box-shadow:
+    0 5px 0 #c6b28f,
+    0 9px 17px #59432916,
+    inset 0 1px 0 #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.menuCard:hover {
+  transform: translateY(-2px);
+  border-color: #b69a67;
+  background: linear-gradient(145deg, #fffaf0 0%, #f0e5d2 100%);
+  box-shadow:
+    0 7px 0 #bda982,
+    0 13px 22px #59432920,
+    inset 0 1px 0 #fff;
+}
+
+.menuPhoto {
+  border: 4px solid #f6eddd;
+  box-shadow: inset 0 2px 5px #0004, 0 1px 0 #fff;
+}
+
+.menuPhoto::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border: 1px solid #fff8e866;
+  content: "";
+  pointer-events: none;
+}
+
+.menuCardInfo {
+  background: transparent;
+}
+
+.itemTitle strong {
+  border: 1px solid #d9c9a8;
+  border-radius: 6px;
+  padding: 4px 7px;
+  background: linear-gradient(180deg, #fff8e6, #e6d6b8);
+  box-shadow: 0 2px 0 #caba9b, inset 0 1px #fff;
+  color: #725a30;
+}
+
+.cardFooter {
+  border-top-color: #d3c4aa;
+}
+
+.story,
+.successBanner {
+  border: 1px solid #d0bf9d;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #fff8e9, #e8dcc7);
+  box-shadow: 0 5px 0 #c6b28f, 0 9px 18px #59432916, inset 0 1px #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.story {
+  margin: 0 0 27px;
+  padding: 25px 28px;
+}
+
+.drawer {
+  border-left: 1px solid #fff8e9;
+  background: linear-gradient(145deg, #fbf5e9, #e9decc);
+  box-shadow: -12px 0 0 #c6b28f, -23px 0 36px #35281835, inset 1px 0 #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.drawerHeader,
+.drawerFooter {
+  border-color: #d2c2a5;
+}
+
+.drawerCount,
+.emptyIcon {
+  border: 1px solid #d2c19e;
+  background: linear-gradient(180deg, #fff9e8, #e4d7bf);
+  box-shadow: inset 0 1px #fff, 0 2px 0 #c7b492;
+}
+
+.drawerFooter {
+  background: linear-gradient(180deg, #f5edde, #e7dbc7);
+}
+
+.formField input,
+.formField select,
+.formField textarea {
+  border: 1px solid #c9b895;
+  background: linear-gradient(180deg, #e5d9c4, #fffaf0 72%);
+  box-shadow: inset 0 2px 5px #58432624, 0 1px 0 #fff;
+}
+
+.formField input:focus,
+.formField select:focus,
+.formField textarea:focus {
+  border-color: #a78a58;
+  box-shadow: inset 0 2px 5px #5843261c, 0 0 0 3px #c6a15b36;
+}
+
+.quantityControl {
+  border-color: #c5b492;
+  background: linear-gradient(180deg, #e1d4bd, #fff9e9);
+  box-shadow: inset 0 2px 4px #56452c24, 0 1px 0 #fff;
+}
+
+.quantityControl button:hover {
+  background: #d3c3a6;
+}
+
+.checkoutButton:disabled {
+  box-shadow: none;
+}
+
+.mobileBar {
+  border-top: 1px solid #fff8e9;
+  background: linear-gradient(180deg, #f7efdf, #e4d6c0);
+  box-shadow: 0 -4px 0 #c5b18d, 0 -9px 18px #4d39231e;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.mobileBar button {
+  border: 1px solid #fff1d2;
+  background: linear-gradient(180deg, #403c34, #171715 60%, #090909);
+  box-shadow: 0 4px 0 #050505, inset 0 1px #ffffff38;
+}
+
+.toast {
+  border: 1px solid #fff1d2;
+  background: linear-gradient(180deg, #403c34, #171715);
+  box-shadow: 0 4px 0 #050505, 0 9px 18px #12121230, inset 0 1px #ffffff38;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 760px) {
+  .header {
+    background: linear-gradient(180deg, #fff9ed, #e8dcc8);
+  }
+
+  .navigation.mobileNavigationOpen {
+    border: 1px solid #cbbb9d;
+    background: linear-gradient(145deg, #fff9ed, #e8dcc8);
+    box-shadow: 0 5px 0 #c2af90, 0 10px 18px #503c2524, inset 0 1px #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .story {
+    padding: 20px;
+  }
+
+  .drawer {
+    border-top: 1px solid #fff8e9;
+    border-left: 0;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -5px 0 #c6b28f, 0 -14px 30px #35281835, inset 0 1px #fff;
+  }
+
+  .cartDrawer {
+    border-radius: 0;
+    box-shadow: -8px 0 0 #c6b28f, -18px 0 30px #35281835, inset 1px 0 #fff;
+  }
+}
