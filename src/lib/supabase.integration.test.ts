@@ -6,6 +6,7 @@ import { PGlite } from "@electric-sql/pglite";
 const db = new PGlite();
 const storefrontMigration = readFileSync(resolve(process.cwd(), "supabase/migrations/20261103010000_public_storefront.sql"), "utf8");
 const staffMigration = readFileSync(resolve(process.cwd(), "supabase/migrations/20261103020000_staff_portal.sql"), "utf8");
+const orderSourceMigration = readFileSync(resolve(process.cwd(), "supabase/migrations/20261104010000_fix_guest_order_source_default.sql"), "utf8");
 type QueryResult<T> = { rows: T[] };
 
 describe("Supabase storefront SQL integration", () => {
@@ -15,6 +16,8 @@ describe("Supabase storefront SQL integration", () => {
     await db.exec("create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true),'')::uuid $$;");
     await db.exec(storefrontMigration);
     await db.exec(staffMigration);
+    await db.exec("alter table public.orders alter column source drop default");
+    await db.exec(orderSourceMigration);
   });
   afterAll(async () => { await db.close(); });
 
@@ -43,8 +46,8 @@ describe("Supabase storefront SQL integration", () => {
     ) as QueryResult<{ order: { id: string; total: number; order_number: number } }>;
     expect(first.rows[0].order.total).toBe(2380);
     expect(retry.rows[0].order.id).toBe(first.rows[0].order.id);
-    const count = await db.query<{ count: number }>("select count(*)::int as count from public.orders") as QueryResult<{ count: number }>;
-    expect(count.rows[0].count).toBe(1);
+    const orders = await db.query<{ count: number; source: string }>("select count(*)::int as count, min(source) as source from public.orders") as QueryResult<{ count: number; source: string }>;
+    expect(orders.rows[0]).toEqual({ count: 1, source: "online" });
   });
 
   it("applies restaurant tax, delivery fee, free-delivery threshold, and minimum order", async () => {
