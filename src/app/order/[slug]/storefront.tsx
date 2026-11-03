@@ -25,6 +25,13 @@ const oliveUakMenuPhotos: Record<string, string> = {
   "Chicken Nuggets (6 pcs)": "/menu/olive-uak/chicken-nuggets.webp",
   "Masala Fries": "/menu/olive-uak/masala-fries.webp",
   "Mint Margarita": "/menu/olive-uak/mint-margarita.webp",
+  "Fresh Mojito": "/menu/olive-uak/fresh-mojito.jpg",
+  "Signature Mocktail": "/menu/olive-uak/signature-mocktail.jpg",
+  "Buffalo Wings": "/menu/olive-uak/buffalo-wings.jpg",
+  "Beef Tenderloin Steak": "/menu/olive-uak/beef-tenderloin-steak.jpg",
+  "Truffle Fries": "/menu/olive-uak/truffle-fries.jpg",
+  "Lamb Chops": "/menu/olive-uak/lamb-chops.jpg",
+  "Stuffed Chicken Breast": "/menu/olive-uak/stuffed-chicken-breast.jpg",
 };
 
 function money(value: number, currency: string) {
