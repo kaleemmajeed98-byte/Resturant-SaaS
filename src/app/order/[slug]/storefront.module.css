@@ -1162,6 +1162,16 @@
   background-color: #222;
 }
 
+.branchName svg,
+.heroCardArrow {
+  background-color: transparent;
+}
+
+.heroMeta i,
+.eyebrow > span {
+  background-color: #222;
+}
+
 .eyebrow,
 .sectionEyebrow {
   background: none;
@@ -1205,11 +1215,17 @@
 }
 
 .heroReady i,
-.eyebrow > span,
-.heroMeta i,
-.branchName svg {
-  background: #fff;
+.heroReady {
   color: #fff;
+}
+
+.heroReady i {
+  background: #fff;
+}
+
+.branchName svg,
+.footerAddress svg {
+  color: #222;
 }
 
 .heroCard {
