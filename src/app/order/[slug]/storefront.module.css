@@ -2547,3 +2547,35 @@
     transition-duration: .01ms;
   }
 }
+
+.heroCard {
+  transform: none;
+  border-color: #78633d;
+  border-radius: 3px;
+  background: #141310;
+  box-shadow: none;
+}
+
+.heroCardMark {
+  border-color: #c6a15b;
+  border-radius: 2px;
+  background: #c6a15b;
+  box-shadow: none;
+  color: #15120c;
+}
+
+.heroCaption {
+  top: 45px;
+  right: auto;
+  bottom: auto;
+  left: 19px;
+  max-width: 190px;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .heroCaption {
+    left: 15px;
+    max-width: 165px;
+  }
+}
