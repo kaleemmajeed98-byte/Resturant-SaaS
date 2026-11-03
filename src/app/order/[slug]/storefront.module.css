@@ -901,6 +901,462 @@
 }
 
 .page {
+  --ink: #f5f2eb;
+  --muted: #aaa59a;
+  --paper: #0c0c0b;
+  --accent: #c6a15b;
+  --green: #c6a15b;
+  --sage: #201e19;
+  color-scheme: dark;
+  background: #0b0b0a !important;
+  background-image: none !important;
+  color: #f5f2eb;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.header {
+  top: 0;
+  margin-top: 0;
+  border: 0;
+  border-bottom: 1px solid #c6a15b55;
+  border-radius: 0;
+  background: #0b0b0a;
+  box-shadow: none;
+}
+
+.brand,
+.brand span,
+.footer .brand,
+.footer .brand span {
+  color: #f5f2eb;
+}
+
+.brand span,
+.footer .brand span,
+.eyebrow,
+.sectionEyebrow,
+.branchName svg,
+.footerAddress svg,
+.heroCardArrow,
+.itemTitle strong,
+.heroReady i {
+  color: #c6a15b;
+}
+
+.navigation a,
+.branchName,
+.heroDescription,
+.heroMeta,
+.menuIntro,
+.story > p,
+.footerRight,
+.footer > div:first-child > p,
+.menuCardInfo > p,
+.cardFooter > span,
+.paymentNote,
+.totals > div {
+  color: #aaa59a;
+}
+
+.navigation a:hover,
+.footerRight a:hover {
+  color: #e2c47e;
+}
+
+.eyebrow,
+.sectionEyebrow {
+  background: transparent;
+}
+
+.eyebrow > span,
+.heroMeta i {
+  background: #c6a15b;
+}
+
+.heroCopy h1,
+.menuHeading h2,
+.story h2,
+.message h1,
+.itemTitle h3,
+.drawerHeader h2,
+.cartHeading h2,
+.cartLineTop h3,
+.emptyCart h3 {
+  color: #f5f2eb;
+  text-shadow: none;
+}
+
+.hero,
+.heroCopy,
+.heroImage,
+.menuGrid,
+.menuCard,
+.menuPhoto,
+.menuCardInfo,
+.story,
+.drawer,
+.drawerLayer {
+  perspective: none;
+  perspective-origin: initial;
+  transform: none !important;
+  transform-style: flat;
+}
+
+.heroImage {
+  border: 1px solid #c6a15b66;
+  border-radius: 3px;
+  background: #111;
+}
+
+.heroImage:hover .heroPhoto,
+.menuCard:hover .foodImage {
+  transform: none;
+}
+
+.heroShade {
+  background: linear-gradient(0deg, #000b, transparent 65%);
+}
+
+.heroReady {
+  border-color: #c6a15b80;
+  border-radius: 2px;
+  background: #0b0b0a;
+  color: #f5f2eb;
+}
+
+.heroReady i {
+  background: #c6a15b;
+}
+
+.heroCard {
+  right: 18px;
+  bottom: 20px;
+  left: 18px;
+  border: 1px solid #c6a15b99;
+  border-radius: 3px;
+  background: #10100f;
+  color: #f5f2eb;
+}
+
+.heroCardMark {
+  border: 1px solid #c6a15b;
+  border-radius: 2px;
+  background: #c6a15b;
+  color: #111;
+}
+
+.heroCard small,
+.heroCaption {
+  color: #c5bda9;
+}
+
+.primaryButton,
+.cardFooter button,
+.checkoutButton,
+.mobileBar button {
+  border: 1px solid #c6a15b;
+  border-radius: 3px;
+  background: #c6a15b;
+  color: #111;
+  text-shadow: none;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.primaryButton:hover,
+.cardFooter button:hover,
+.checkoutButton:hover,
+.mobileBar button:hover {
+  transform: none;
+  border-color: #e2c47e;
+  background: #e2c47e;
+  color: #111;
+}
+
+.secondaryButton {
+  border: 1px solid #8a7143;
+  border-radius: 3px;
+  background: transparent;
+  color: #f5f2eb;
+  text-shadow: none;
+}
+
+.secondaryButton:hover {
+  transform: none;
+  border-color: #c6a15b;
+  background: #c6a15b14;
+  color: #e2c47e;
+}
+
+.menuSection {
+  border-top: 1px solid #c6a15b33;
+}
+
+.menuSection::before {
+  content: none;
+}
+
+.searchBox {
+  border: 1px solid #655331;
+  border-radius: 3px;
+  background: #11110f;
+}
+
+.searchBox svg { stroke: #c6a15b; }
+.searchBox input { color: #f5f2eb; }
+.searchBox input::placeholder { color: #8e887d; }
+
+.categoryTabs button,
+.categoryTabs button:not(.activeCategory) {
+  border: 1px solid #38352e;
+  border-radius: 3px;
+  background: #11110f;
+  color: #d3cec2;
+}
+
+.categoryTabs button:hover,
+.categoryTabs button.activeCategory {
+  border-color: #c6a15b;
+  background: #c6a15b;
+  color: #111;
+}
+
+.menuCard {
+  overflow: hidden;
+  border: 1px solid #37332a;
+  border-radius: 4px;
+  background: #11110f;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.menuCard:hover {
+  transform: none;
+  border-color: #c6a15b;
+  background: #151410;
+}
+
+.menuPhoto {
+  height: clamp(150px, 18vw, 220px);
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+}
+
+.menuPhoto::after { content: none; }
+
+.photoCategory {
+  border: 1px solid #c6a15b77;
+  border-radius: 2px;
+  background: #0b0b0a;
+  color: #e2c47e;
+}
+
+.menuCardInfo {
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #ffffff17;
+  border-radius: 0;
+  background: #11110f;
+}
+
+.itemTitle strong {
+  border: 0;
+  padding: 2px 0;
+  background: transparent;
+  color: #e2c47e;
+}
+
+.cardFooter {
+  border-top-color: #ffffff1b;
+}
+
+.story,
+.successBanner {
+  border: 0;
+  border-top: 1px solid #c6a15b55;
+  border-radius: 0;
+  background: transparent;
+  color: #f5f2eb;
+}
+
+.drawer {
+  border: 0;
+  border-left: 1px solid #c6a15b66;
+  border-radius: 0;
+  background: #0c0c0b;
+  color: #f5f2eb;
+}
+
+.drawerHeader,
+.drawerFooter,
+.cartHeading,
+.cartLines,
+.cartLine,
+.totals > div.grandTotal {
+  border-color: #ffffff1b;
+}
+
+.drawerCount,
+.emptyIcon {
+  border: 1px solid #6c5732;
+  border-radius: 3px;
+  background: #191712;
+  color: #e2c47e;
+}
+
+.cartLineTop > strong,
+.totals > div strong,
+.totals > div.grandTotal strong {
+  color: #f5f2eb;
+}
+
+.quantityControl {
+  border: 1px solid #4d412b;
+  border-radius: 3px;
+  background: #11110f;
+}
+
+.quantityControl button { color: #e2c47e; }
+.quantityControl button:hover { background: #c6a15b1c; }
+.removeButton { color: #aaa59a; }
+.removeButton:hover { color: #e2c47e; }
+
+.formField { color: #e6e1d7; }
+
+.formField input,
+.formField select,
+.formField textarea {
+  border: 1px solid #514329;
+  border-radius: 3px;
+  background: #11110f;
+  color: #f5f2eb;
+  color-scheme: dark;
+}
+
+.formField input::placeholder,
+.formField textarea::placeholder {
+  color: #8e887d;
+}
+
+.formField input:focus,
+.formField select:focus,
+.formField textarea:focus {
+  border-color: #c6a15b;
+}
+
+.drawerFooter {
+  background: #0c0c0b;
+}
+
+.minimumNote {
+  border-left: 2px solid #c6a15b;
+  border-radius: 0;
+  background: #171510;
+  color: #e2c47e;
+}
+
+.mobileBar {
+  border-top: 1px solid #c6a15b66;
+  background: #0c0c0b;
+}
+
+.toast {
+  border: 1px solid #c6a15b;
+  border-radius: 3px;
+  background: #171510;
+  color: #f5f2eb;
+}
+
+.noResults {
+  border-color: #5b4b30;
+  border-radius: 4px;
+  background: #11110f;
+}
+
+.noResults h3 { color: #f5f2eb; }
+.noResults p,
+.message p { color: #aaa59a; }
+.noResults > svg,
+.backLink,
+.noResults button { color: #d7b76f; }
+
+.loadingMark {
+  border: 1px solid #c6a15b;
+  border-radius: 50%;
+  background: #171510;
+  color: #e2c47e;
+}
+
+.loading p { color: #d3cec2; }
+.loadingBar { background: #29251d; }
+.loadingBar::after { background: #c6a15b; }
+
+.formError {
+  border: 1px solid #803c31;
+  border-radius: 3px;
+  background: #291714;
+  color: #ffd3c8;
+}
+
+.footer {
+  border-color: #ffffff24;
+}
+
+.backdrop {
+  background: #000c;
+}
+
+@media (max-width: 760px) {
+  .header {
+    background: #0b0b0a;
+  }
+
+  .navigation.mobileNavigationOpen {
+    border: 1px solid #6b5733;
+    border-radius: 0 0 4px 4px;
+    background: #11110f;
+  }
+
+  .navigation.mobileNavigationOpen a {
+    border-color: #ffffff19;
+    color: #f0eadf;
+  }
+
+  .menuPhoto {
+    height: clamp(112px, 36vw, 180px);
+  }
+
+  .menuCardInfo {
+    min-height: 165px;
+    margin: 0;
+    padding: 12px;
+  }
+
+  .drawer {
+    border-top: 1px solid #c6a15b66;
+    border-left: 0;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .cartDrawer {
+    border-radius: 0;
+  }
+
+  .mobileBar {
+    border-color: #c6a15b66;
+  }
+}
+
+.page {
   background-color: #e9e2d6;
   background-image:
     radial-gradient(ellipse at 82% 13%, #d2bd9755 0, transparent 30%),
