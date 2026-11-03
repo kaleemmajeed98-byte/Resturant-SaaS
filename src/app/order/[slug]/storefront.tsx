@@ -32,6 +32,10 @@ const oliveUakMenuPhotos: Record<string, string> = {
   "Truffle Fries": "/menu/olive-uak/truffle-fries.jpg",
   "Lamb Chops": "/menu/olive-uak/lamb-chops.jpg",
   "Stuffed Chicken Breast": "/menu/olive-uak/stuffed-chicken-breast.jpg",
+  "Dynamite Prawns": "/menu/olive-uak/dynamite-prawns.jpg",
+  "Molten Lava Cake": "/menu/olive-uak/molten-lava-cake.jpg",
+  "New York Cheesecake": "/menu/olive-uak/new-york-cheesecake.jpg",
+  "Tiramisu": "/menu/olive-uak/tiramisu.jpg",
 };
 
 function money(value: number, currency: string) {
