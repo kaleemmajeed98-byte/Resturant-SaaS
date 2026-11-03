@@ -254,7 +254,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
           <div><p className={styles.sectionEyebrow}>Made for your table</p><h2>Our menu</h2><p className={styles.menuIntro}>A few good things, made with care.</p></div>
           <label className={styles.searchBox}><span className={styles.srOnly}>Search menu</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m16 16 4 4" /></svg><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search the menu" /></label>
         </div>
-        <div className={styles.menuLayout}>
+        <div className={`${styles.menuLayout} ${count === 0 ? styles.menuLayoutWithoutCart : ""}`}>
           <div className={styles.menuContent}>
             <div className={styles.categoryTabs} role="group" aria-label="Filter menu by category">
               <button type="button" aria-pressed={activeCategory === "all"} className={activeCategory === "all" ? styles.activeCategory : ""} onClick={() => setActiveCategory("all")}>All items</button>
@@ -276,13 +276,13 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
             ) : <div className={styles.noResults}><Icon name="plate" /><h3>{search ? "Nothing found" : "The menu is being prepared"}</h3><p>{search ? "Try another search or category." : "Check back soon for something delicious."}</p>{search && <button type="button" onClick={() => { setSearch(""); setActiveCategory("all"); }}>Clear filters</button>}</div>}
           </div>
 
-          <aside className={styles.desktopCart} aria-label="Order summary">
+          {count > 0 && <aside className={styles.desktopCart} aria-label="Order summary">
             <div className={styles.cartHeading}><div><p>Your selections</p><h2>Your order</h2></div><span>{count} {count === 1 ? "item" : "items"}</span></div>
             <div className={styles.cartContent}>{cartContents}</div>
             {currentSubtotal > 0 && currentSubtotal < minimumOrder && <p className={styles.minimumNote}>Minimum order is {money(minimumOrder, menu.restaurant.currency)}.</p>}
             <button type="button" className={styles.checkoutButton} disabled={!cart.length || !orderTypeAvailable || currentSubtotal < minimumOrder} onClick={() => { setCheckout(true); setProblem(""); }}>Continue to checkout <Icon name="arrow" /></button>
             <p className={styles.paymentNote}>No online payment required · Pay at the restaurant</p>
-          </aside>
+          </aside>}
         </div>
       </section>
 
