@@ -336,6 +336,7 @@
 .cartBackdrop { animation: backdropFadeIn 200ms ease-out both; }
 .cartDrawer { width: min(440px, 100%); animation: cartSlideIn 240ms cubic-bezier(.2,.7,.2,1) both; }
 .drawerHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #12121214; padding: 17px 22px; }
+.drawerCount { flex: 0 0 auto; border-radius: 999px; padding: 5px 9px; background: #f2eee5; color: #625e56; font-size: 8px; white-space: nowrap; }
 .closeButton { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #12121222; border-radius: 50%; background: transparent; }
 .closeButton:hover { background: #12121208; }
 .closeButton svg { width: 16px; height: 16px; }

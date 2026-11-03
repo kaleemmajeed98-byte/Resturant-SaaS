@@ -311,6 +311,7 @@ export default function Storefront({ restaurantSlug, branchSlug }: { restaurantS
           <section className={`${styles.drawer} ${styles.cartDrawer}`} role="dialog" aria-modal="true" aria-labelledby="cart-title">
             <div className={styles.drawerHeader}>
               <div><p>Your selections</p><h2 id="cart-title">Your order</h2></div>
+              <span className={styles.drawerCount}>{count} {count === 1 ? "item" : "items"}</span>
               <button type="button" className={styles.closeButton} onClick={() => setCartOpen(false)} aria-label="Close cart"><Icon name="close" /></button>
             </div>
             <div className={styles.drawerScroll}>
