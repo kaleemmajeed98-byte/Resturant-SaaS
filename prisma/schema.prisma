@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TenantStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum MemberRole {
+  OWNER
+  MANAGER
+  STAFF
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  OUT_FOR_DELIVERY
+  COMPLETED
+  CANCELLED
+}
+
+enum DomainStatus {
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+model Tenant {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  name        String
+  status      TenantStatus @default(ACTIVE)
+  published   Boolean      @default(false)
+  theme       String       @default("modern")
+  currency    String       @default("USD")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  settings    TenantSettings?
+  domains     Domain[]
+  memberships Membership[]
+  categories  Category[]
+  products    Product[]
+  orders      Order[]
+}
+
+model TenantSettings {
+  id           String @id @default(cuid())
+  tenantId     String @unique
+  primaryColor String @default("#b91c1c")
+  logoUrl      String?
+  heroImageUrl String?
+  description  String @default("")
+  phone        String @default("")
+  address      String @default("")
+  tenant       Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model Domain {
+  id         String       @id @default(cuid())
+  hostname   String       @unique
+  status     DomainStatus @default(PENDING)
+  tenantId   String
+  tenant     Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now())
+  @@index([tenantId])
+}
+
+model User {
+  id          String       @id @default(cuid())
+  email       String       @unique
+  name        String?
+  memberships Membership[]
+  createdAt   DateTime     @default(now())
+}
+
+model Membership {
+  id        String     @id @default(cuid())
+  tenantId  String
+  userId    String
+  role      MemberRole @default(STAFF)
+  tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([tenantId, userId])
+  @@index([userId])
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  tenantId  String
+  name      String
+  sortOrder Int       @default(0)
+  tenant    Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  products  Product[]
+  @@unique([tenantId, name])
+  @@index([tenantId, sortOrder])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  tenantId    String
+  categoryId  String
+  name        String
+  description String  @default("")
+  priceCents  Int
+  available   Boolean @default(true)
+  imageUrl    String?
+  tenant      Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  @@index([tenantId, categoryId])
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  tenantId       String
+  orderNumber    String
+  status         OrderStatus @default(PENDING)
+  customerName   String
+  customerPhone  String
+  fulfillment    String
+  subtotalCents  Int
+  deliveryCents  Int         @default(0)
+  totalCents     Int
+  items          Json
+  tenant         Tenant      @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  @@unique([tenantId, orderNumber])
+  @@index([tenantId, createdAt])
+}
